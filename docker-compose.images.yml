@@ -9,7 +9,7 @@ services:
     image: dockersamples/examplevotingapp_vote
     depends_on:
       redis:
-        condition: service_healthy 
+        condition: service_healthy
     ports:
       - "8080:80"
     networks:
@@ -17,10 +17,11 @@ services:
       - back-tier
 
   result:
-    image: dockersamples/examplevotingapp_result
+    image: harshpanchal18/votingapp_result:v0.1
+    # image: dockersamples/examplevotingapp_result
     depends_on:
       db:
-        condition: service_healthy 
+        condition: service_healthy
     ports:
       - "8081:80"
     networks:
@@ -31,9 +32,9 @@ services:
     image: dockersamples/examplevotingapp_worker
     depends_on:
       redis:
-        condition: service_healthy 
+        condition: service_healthy
       db:
-        condition: service_healthy 
+        condition: service_healthy
     networks:
       - back-tier
 
